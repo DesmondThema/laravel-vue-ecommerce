@@ -50,6 +50,7 @@ this will fill the database with dummy data.
 
 
 ## Potential Features for improvement
+- Order confirmation email
 - Put admin under auth.
 - Have user roles (admin and normal user)
 - Show list of orders and revenue on admin
