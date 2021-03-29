@@ -1,5 +1,3 @@
-![alt text](product_details.png)
-
 # About Steetware.co.za
 
 Streetware.co.za is a basic online shopping system powered by [Laravel](https://laravel.com/) at the back engine, [VueJs](https://vuejs.org/) at the front office and [TailwindCss](https://tailwindcss.com)
