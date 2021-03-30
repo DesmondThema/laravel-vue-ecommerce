@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Str;
+use App\Http\Controllers\LoginController;
 
 class ProductsController extends Controller
 {
@@ -65,6 +66,9 @@ class ProductsController extends Controller
         return redirect('/admin');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function products()
     {
         return Product::all();

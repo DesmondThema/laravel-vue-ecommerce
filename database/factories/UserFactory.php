@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'province' => $this->faker->state,
             'zip_code' => $this->faker->postcode,
             'password' => bcrypt('password'),
+            'user_group_id' => 2,
             'remember_token' => Str::random(10),
         ];
     }

@@ -7,24 +7,33 @@
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="name" class="block font-medium text-sm text-gray-700">Product Name</label>
-                            <input type="text" name="name" id="name" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('name', '') }}" />
+                            <label for="name" class="block mb-2 font-medium text-sm text-gray-700">Product Name</label>
+                            <input
+                                id="name"
+                                name="name"
+                                value="{{ old('name', '') }}"
+                                class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            />
                             @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="designer" class="block font-medium text-sm text-gray-700">Designer</label>
-                            <input type="text" name="designer" id="designer" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('designer', '') }}" />
+                            <label for="designer" class="block mb-2 font-medium text-sm text-gray-700">Designer</label>
+                            <input
+                                id="designer"
+                                name="designer"
+                                value="{{ old('designer', '') }}"
+                                class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            />
                             @error('designer')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
-                            <textarea id="description" name="description" class="block font-medium text-sm text-gray-700 w-full">
+                            <label for="description" class="block mb-2 font-medium text-sm text-gray-700">Description</label>
+                            <textarea id="description" name="description"
+                                      class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2">
 
                             </textarea>
                             @error('description')
@@ -32,15 +41,19 @@
                             @enderror
                         </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="price" class="block font-medium text-sm text-gray-700">Price</label>
-                            <input type="text" name="price" id="price" type="text" class="form-input rounded-md shadow-sm mt-1 block"
-                                   value="{{ old('price', '') }}" />
+                            <label for="price" class="block mb-2 font-medium text-sm text-gray-700">Price</label>
+                            <input
+                                id="price"
+                                name="price"
+                                value="{{ old('price', '') }}"
+                                class="w-1/2 bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+                            />
                             @error('price')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="file" class="block font-medium text-sm text-gray-700">Product Image</label>
+                            <label for="file" class="block mb-2 font-medium text-sm text-gray-700">Product Image</label>
                             <input type="file" name="file" required>
                         </div>
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">

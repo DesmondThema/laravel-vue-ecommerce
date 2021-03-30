@@ -3,9 +3,6 @@
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50 Q ,60 10,30 z">
-
-                    </path>
                 </svg>
                 <span class="ml-3 text-xl">StreetWare.co.za</span>
             </a>
@@ -42,6 +39,11 @@
                 to="/account"
             > Account
             </router-link>
+            <a href="/admin"
+                v-if="isLoggedIn && isAdmin"
+                class="inline-flex items-center py-1 px-3 focus:outline-none text-base mt-4 md:mt-0"
+            > Admin
+            </a>
             <router-link
                 v-if="isLoggedIn"
                 @click.native="logout"
@@ -59,7 +61,9 @@
         name: "Header",
         data() {
             return {
-                isLoggedIn: false
+                isLoggedIn: false,
+                user: null,
+                isAdmin: false,
             }
         },
         methods: {
@@ -74,6 +78,13 @@
         },
         mounted() {
             this.isLoggedIn = !! localStorage.getItem('auth')
+            if (this.isLoggedIn) {
+                 axios.get('/api/user').then((res)=> {
+                    if (res.data.user_group_id === 2) {
+                        this.isAdmin = true
+                    }
+                });
+            }
         },
 
     }

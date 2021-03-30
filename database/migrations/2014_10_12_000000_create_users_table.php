@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('province')->nullable();
             $table->string('zip_code')->nullable();
             $table->integer('funds')->default(0);
+            $table->integer('user_group_id')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

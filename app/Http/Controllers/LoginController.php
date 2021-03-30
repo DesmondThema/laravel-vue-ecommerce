@@ -8,6 +8,10 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -22,8 +26,21 @@ class LoginController extends Controller
             'email' =>['The provided credentials are incorect.']
         ]);
     }
+
+    /**
+     * API user logout
+     */
     public function logout()
     {
         Auth::logout();
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public static function loggedInUser(Request $request)
+    {
+        return $request->user();
     }
 }

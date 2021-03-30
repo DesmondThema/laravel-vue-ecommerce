@@ -12,7 +12,9 @@
                         class="block relative h-48 rounded overflow-hidden"
                         :to="{name: 'products.show', params: {slug: product.slug}}"
                     >
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" :src="'/storage/products/' + product.file_path">
+                        <img v-if="product.file_path == 0" alt="ecommerce" class="object-cover object-center w-full h-full block"
+                             src="/images/palledium.jpeg">
+                        <img v-else alt="ecommerce" class="object-cover object-center w-full h-full block" :src="'/storage/products/' + product.file_path">
                     </router-link>
                     <div class="mt-4">
                         <h3

@@ -2,9 +2,11 @@
     <div>
         <Header></Header>
         <section class="text-gray-700 body-font overflow-hidden" v-if="product">
-            <div class="container px-12 py-24 mx-auto">
+            <div class="container px-4 py-24 mx-auto">
                 <div class="lg:w-3/5 mx-auto flex flex-wrap">
-                    <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-60 object-cover object-center rounded" :src="'/storage/products/' + product.file_path">
+                    <img v-if="product.file_path == 0" alt="ecommerce" class="object-cover object-center w-1/2 h-66 block"
+                         src="/images/palledium.jpeg">
+                    <img v-else alt="ecommerce" class="object-cover object-center w-1/2 h-66 block" :src="'/storage/products/' + product.file_path">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2
                             class="text-sm title-font text-gray-500 tracking-widest uppercase inline-block mr-2"

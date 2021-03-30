@@ -1856,8 +1856,60 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
   mode: 'history',
   routes: __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js")
 });
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
+  state: {
+    products: [],
+    cart: [],
+    order: {}
+  },
+  mutations: {
+    updateProducts: function updateProducts(state, products) {
+      state.products = products;
+    },
+    addToCart: function addToCart(state, product) {
+      var productInCartIndex = state.cart.findIndex(function (item) {
+        return item.slug === product.slug;
+      });
+
+      if (productInCartIndex !== -1) {
+        alert('You can only add one product to cart');
+        return;
+      }
+
+      product.quantity = 1;
+      state.cart.push(product);
+    },
+    removeFromCart: function removeFromCart(state, index) {
+      state.cart.splice(index, 1);
+    },
+    updateOrder: function updateOrder(state, order) {
+      state.order = order;
+    },
+    updateCart: function updateCart(state, cart) {
+      state.cart = cart;
+    }
+  },
+  actions: {
+    getCategories: function getCategories(_ref) {
+      var commit = _ref.commit;
+      console.log('no action'); // fetch the categories and attached products from the api
+
+      axios.get('/api/products').then(function (response) {
+        console.log(response);
+        commit('updateProducts', response.data);
+      })["catch"](function (error) {
+        return console.error(error);
+      });
+    },
+    clearCart: function clearCart(_ref2) {
+      var commit = _ref2.commit;
+      commit('updateCart', []);
+    }
+  }
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   router: router,
+  store: store,
   el: '#app',
   created: function created() {
     store.dispatch('getCategories').then(function (_) {})["catch"](function (error) {
@@ -1910,12 +1962,51 @@ module.exports = [{
   name: 'auth.login',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_auth_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./auth/Login.vue */ "./resources/js/auth/Login.vue"));
+  },
+  meta: {
+    guest: true
   }
 }, {
   path: '/register/',
   name: 'auth.register',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_auth_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./auth/Register.vue */ "./resources/js/auth/Register.vue"));
+  },
+  meta: {
+    guest: true
+  }
+}, {
+  path: '/account/',
+  name: 'Account',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_auth_Account_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./auth/Account.vue */ "./resources/js/auth/Account.vue"));
+  },
+  meta: {
+    authOnly: true
+  }
+}, {
+  path: '/',
+  name: 'products.index',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Products_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Products/Index.vue */ "./resources/js/components/Products/Index.vue"));
+  }
+}, {
+  path: '/product/:slug',
+  name: 'products.show',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Products_Show_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Products/Show.vue */ "./resources/js/components/Products/Show.vue"));
+  }
+}, {
+  path: '/checkout',
+  name: 'order.checkout',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Order_Checkout_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Order/Checkout.vue */ "./resources/js/components/Order/Checkout.vue"));
+  }
+}, {
+  path: '/summary',
+  name: 'order.summary',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_Order_Summary_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Order/Summary.vue */ "./resources/js/components/Order/Summary.vue"));
   }
 }];
 
@@ -35818,6 +35909,18 @@ var index = {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -35848,7 +35951,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_auth_Login_vue":1,"resources_js_auth_Register_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_auth_Login_vue":1,"resources_js_auth_Register_vue":1,"resources_js_auth_Account_vue":1,"resources_js_components_Products_Index_vue":1,"resources_js_components_Products_Show_vue":1,"resources_js_components_Order_Checkout_vue":1,"resources_js_components_Order_Summary_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
