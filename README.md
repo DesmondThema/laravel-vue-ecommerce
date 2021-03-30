@@ -42,8 +42,9 @@ In public directory, there's a new folder called storage, in storage folder crea
 10. Seed the database(Optional)  
 `php artisan db:seed` 
 this will fill the database with dummy data.  
-
-11. Run the application  
+11. Build assets. 
+12. `npm run dev`
+13. Run the application  
 `php artisan serve`  
 
 
