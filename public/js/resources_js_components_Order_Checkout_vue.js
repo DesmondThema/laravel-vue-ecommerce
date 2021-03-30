@@ -484,7 +484,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         zip_code: ''
       },
       paymentProcessing: false,
-      user: null
+      user: null,
+      errors: []
     };
   },
   created: function created() {
@@ -498,6 +499,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 2;
               return axios.get('/api/user').then(function (res) {
                 _this.user = res.data;
+              })["catch"](function (error) {
+                _this.errors = error.response.data;
               });
 
             case 2:
@@ -594,10 +597,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (error) {
                   _this3.paymentProcessing = false;
-                  console.log('Error occured');
                 } else {
-                  console.log('proceeding with payment'); //console.log(paymentMethod);
-
                   _this3.customer.payment_method_id = paymentMethod.id;
                   _this3.customer.amount = _this3.$store.state.cart.reduce(function (acc, item) {
                     return acc + item.price * item.quantity;

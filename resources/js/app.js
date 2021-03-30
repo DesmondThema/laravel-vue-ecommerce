@@ -13,6 +13,25 @@ const router = new VueRouter({
     routes: require('./routes.js')
 });
 
+function isLoggedIn() {
+    return localStorage.getItem('auth')
+}
+
+router.beforeEach((to, from, next) => {
+   if (to.matched.some(record => record.meta.authOnly)) {
+       if (!isLoggedIn()) {
+           next({
+               path: '/login',
+               query: {redirect: to.fullPath }
+           })
+       } else {
+           next()
+       }
+   } else {
+       next()
+   }
+})
+
 const store = new Vuex.Store({
     state: {
         products: [],

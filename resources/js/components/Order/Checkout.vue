@@ -197,12 +197,17 @@
                 },
                 paymentProcessing: false,
                 user: null,
+                errors: []
             }
         },
         async created () {
-            await axios.get('/api/user').then((res)=> {
-                this.user = res.data
-            });
+            await axios.get('/api/user')
+                .then((res)=> {
+                    this.user = res.data
+                })
+                .catch((error) => {
+                    this.errors = error.response.data
+                });
         },
         async mounted() {
             this.stripe = await loadStripe(process.env.MIX_STRIPE_KEY);
@@ -255,10 +260,7 @@
 
                 if (error) {
                     this.paymentProcessing = false;
-                    console.log('Error occured')
                 } else {
-                    console.log('proceeding with payment')
-                    //console.log(paymentMethod);
                     this.customer.payment_method_id = paymentMethod.id;
                     this.customer.amount = this.$store.state.cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
                     this.customer.cart = JSON.stringify(this.$store.state.cart);
