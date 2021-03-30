@@ -54,7 +54,7 @@
         },
         methods: {
             formatCurrency(amount) {
-                return amount.toLocaleString('en-US', { style: 'currency', currency: 'ZAR' });
+                return amount.toLocaleString('en-ZA', { style: 'currency', currency: 'ZAR' });
             },
         },
         computed: {
