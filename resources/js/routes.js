@@ -30,11 +30,13 @@ module.exports = [
     {
         path: '/checkout',
         name: 'order.checkout',
-        component: () => import('./components/Order/Checkout.vue')
+        component: () => import('./components/Order/Checkout.vue'),
+        meta: { authOnly: true }
     },
     {
         path: '/summary',
         name: 'order.summary',
-        component: () => import('./components/Order/Summary.vue')
+        component: () => import('./components/Order/Summary.vue'),
+        meta: { authOnly: true }
     }
 ];

@@ -1856,6 +1856,29 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
   mode: 'history',
   routes: __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js")
 });
+
+function isLoggedIn() {
+  return localStorage.getItem('auth');
+}
+
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.authOnly;
+  })) {
+    if (!isLoggedIn()) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
   state: {
     products: [],
@@ -2001,12 +2024,18 @@ module.exports = [{
   name: 'order.checkout',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Order_Checkout_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Order/Checkout.vue */ "./resources/js/components/Order/Checkout.vue"));
+  },
+  meta: {
+    authOnly: true
   }
 }, {
   path: '/summary',
   name: 'order.summary',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_Order_Summary_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Order/Summary.vue */ "./resources/js/components/Order/Summary.vue"));
+  },
+  meta: {
+    authOnly: true
   }
 }];
 

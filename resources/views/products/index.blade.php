@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    @include('layouts.navbar')
     <div>
         <div class="mx-auto py-10 sm:px-6">
-            <div class="block mb-8">
+            <div class="block mb-8 gap-8">
                 <a href="{{ route('admin.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add Product</a>
+                <span class="mx-12"><a href="/" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Go to site</a></span>
             </div>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
