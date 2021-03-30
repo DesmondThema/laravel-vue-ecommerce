@@ -36,7 +36,11 @@ Create an empty database for your project using the database tools you prefer (M
 8. Stripe intergration  
  Head over to [Stripe](https://stripe.com/en-gb-us), create a free account and copy your secret keys. In the .env file put in your stripe key and stripe skey.
 9. Migrate the database  
-`php artisan migrate`  
+`php artisan migrate:fresh` 
+10. Link Storage  
+`php artisan storage:link` 
+11. Create products folder 
+In public directory, there's a new folder called storage, in storage folder create a new folder called `products`
 10. Seed the database(Optional)  
 `php artisan db:seed` 
 this will fill the database with dummy data.  
@@ -58,4 +62,4 @@ this will fill the database with dummy data.
 - Allow users to select product size.
 - Allow users to add to wishlist.
 - Persist the cart on page refresh
-
+- Order confirmation email 
