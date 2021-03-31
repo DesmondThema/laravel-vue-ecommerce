@@ -29,11 +29,16 @@ Streetware allow users to pay by funds, if user does not have enough funds to pa
 6. Generate application key  
 `php artisan key:generate  
 `
-7. Create database
+7. Create database. 
 Create an empty database for your project using the database tools you prefer (My favorite is SequelPro for mac). In the .env file fill in your database credentials
 8. Stripe intergration  
  Head over to [Stripe](https://stripe.com/en-gb-us), create a free account and copy your secret keys. In the .env file put in your stripe key and stripe skey.
-9. Migrate the database  
+ `STRIPE_KEY=your_key`. 
+ `STRIPE_SECRET=your_secret_key`. 
+9. Set Stateful domain. 
+ `SANCTUM_STATEFUL_DOMAIN=`. 
+ This will allow Sanctum to authenticate SPA, should be the domain you are running this project on, eg 127.0.0.1:8000 or desmond.test
+11. Migrate the database  
 `php artisan migrate:fresh` 
 10. Link Storage  
 `php artisan storage:link` 
@@ -47,12 +52,12 @@ this will fill the database with dummy data.
 13. Run the application  
 `php artisan serve`  
 
-
-
-- Now the application should be running, head over to `127.0.0.1::8000\admin` to add products.  
-- Head over to `127.0.0.1::8000\register` to register a new user and `127.0.0.1::8000\login` to login
-- Head over to `127.0.0.1::8000\account` to see funds balance, top up funds, and see list of transaction.
-
+## Admin Section. 
+- Normal users are excluded from seeing the link to admin on the navigation bar. 
+- Only admin user can see this link. When the seed ran, it created admin user with the following details. 
+`email: admin@admin.com`. 
+`password: password`. 
+Admin section is used to create products, when you click add product button. In the future it can be used to view orders and create other admin users.
 
 ## Potential Features for improvement
 - Order confirmation email
