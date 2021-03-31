@@ -37,7 +37,11 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-12 w-12">
-                                                    <img class="h-full w-full object-cover object-center" src="{{ asset('storage/products/' .$product->file_path) }}" alt="">
+                                                    @if ($product->file_path)
+                                                        <img class="h-full w-full object-cover object-center" src="{{ asset('storage/products/' .$product->file_path) }}" alt="">
+                                                        @else
+                                                        <img class="h-full w-full object-cover object-center" src="{{ asset('images/palledium.jpeg') }}" alt="">
+                                                    @endif
                                                 </div>
                                             </div>
                                         </td>
